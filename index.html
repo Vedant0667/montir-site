@@ -35,9 +35,29 @@
     <div class="links">
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Service</a>
-      <a href="mailto:montirtechnologies@gmail.com">Support</a>
+      <a href="javascript:void(0)" id="support-copy" title="Copy email address">Support: montirtechnologies@gmail.com 📋</a>
     </div>
     <p class="foot">Montir is an independent app by Vedant Subramanian, Dylan Millimet, and Michael Ahn.<br>Questions? <a href="mailto:montirtechnologies@gmail.com" style="color:var(--muted)">montirtechnologies@gmail.com</a></p>
   </div>
+<script>
+  (function () {
+    var el = document.getElementById('support-copy');
+    var email = 'montirtechnologies@gmail.com';
+    el.addEventListener('click', function () {
+      function done() {
+        var orig = el.textContent;
+        el.textContent = 'Copied \u2713';
+        setTimeout(function () { el.textContent = orig; }, 1400);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done);
+      } else {
+        var t = document.createElement('textarea');
+        t.value = email; document.body.appendChild(t); t.select();
+        document.execCommand('copy'); t.remove(); done();
+      }
+    });
+  })();
+</script>
 </body>
 </html>
